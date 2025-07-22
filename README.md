@@ -4,7 +4,7 @@ My submission for the [Boot.Dev](https://www.boot.dev/) 2025 Hackathon.
 
 ## Description
 
-Glass Box is a re-imagining of IDE-based AI coding assistants focused on privacy, security, and, most importantly, transparency.
+Glass Box is a re-imagining of IDE-based AI coding assistants that's focused on privacy, security, and, most importantly, transparency.
 
 ## Problems
 
@@ -21,3 +21,11 @@ My solutions to these problems are as follows:
 1. Glass Box limits file access and permissions of the AI assistant via a dedicated config file. This file functions like an inverse of a `.gitignore` file, where you explicitly define directories and files the AI can access, along with read/write permissions on an individual basis.  
 2. By explicitly limiting the AI assistant’s access and permissions through a dedicated file, Glass Box gives users control and peace of mind about what code the AI can interact with.
 3. Glass Box logs metadata about every AI query, including the files accessed by the AI and relevant details about the LLM’s operation.
+
+## Installation
+
+*PLACEHOLDER*
+
+## Configuration
+
+*PLACEHOLDER*
