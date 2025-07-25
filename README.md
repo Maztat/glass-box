@@ -29,3 +29,15 @@ My solutions to these problems are as follows:
 ## Configuration
 
 *PLACEHOLDER*
+
+## Misc
+
+### 1. Potential future features that are out of scope for the Hackathon version
+- Compatability with more than one AI model and API
+- An interactive UI
+- More types of commands for the AI and its prompts
+- vscode extension
+- ?
+
+### 2. Limitations / Issues
+- ?
