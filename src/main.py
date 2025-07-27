@@ -1,28 +1,27 @@
-import sys
-from ai_client import *
-from history import *
-from parser import *
+from commands import *
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python main.py \"What does this code do?\"")
-        return
-    
-    message = sys.argv[1]
-    files = get_files()
-    print(f"\nget_files() returned {len(files)} files")
-    for name in files:
-        print(f" - {name} ({len(files[name])} chars)")
+    print("Glass Box")
+    print("Type a command, or type 'exit' to quit.\n")
 
-    results = query_ai(message, files)
+    while True:
+        user_input = input("> ").strip().lower()
 
-    print("\n====== AI RESPONSE ======")
-    if not results:
-        print("No responses returned.")
-    else:
-        for path, response in results.items():
-            print(f"\n{path}\n{response}\n")
-    print(results)
+        if user_input == "exit":
+            "Exiting..."
+            break
+
+        if not user_input:
+            continue
+
+        if user_input == "prompt":
+            prompt()
+        elif user_input == "prompt-with-file":
+            prompt_with_file()
+        elif user_input == "prompt-with-files":
+            prompt_with_files()
+        elif user_input == "prompt-with-all-files":
+            prompt_with_all_files()
 
 if __name__ == "__main__":
     main()

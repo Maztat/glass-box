@@ -2,11 +2,23 @@ from ollama import Client
 from history import *
 
 client = Client()
-history = get_history()
 
-# builds the prompts (one for each file in .glassbox) and returns replies
-# more details of the replies are logged into history.json to be viewed
-def query_ai(message: str, files: dict[str, str]={}):
+def query_ai(message: str, files: dict[str, str] | None = None) -> dict[str, str]:
+    if not files:
+        response = client.chat(model="codellama", messages=[
+            {"role": "user", "content": message}
+        ])
+        result = response["message"]["content"]
+
+        write_history({
+            "file": None,
+            "user_message": message,
+            "response": result,
+            "model": "codellama"
+        })
+
+        return {"_": result}
+
     results = {}
     file_num = 1
     total = len(files)
@@ -14,7 +26,6 @@ def query_ai(message: str, files: dict[str, str]={}):
     for filepath, content in files.items():
         context = {"role": "system", "content": f"{filepath}:\n{content}"}
 
-        # Prompt provides context and should improve accuracy in the AI responses
         system_prompt = (
             f"You are a helpful and careful code reviewer. "
             f"You will be shown one file at a time for every file paired with the user prompt. "
@@ -40,4 +51,5 @@ def query_ai(message: str, files: dict[str, str]={}):
         })
 
         file_num += 1
+
     return results
