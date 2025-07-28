@@ -4,6 +4,8 @@ from history import *
 client = Client()
 
 def query_ai(message: str, files: dict[str, str] | None = None) -> dict[str, str]:
+    results = {}
+
     if not files:
         response = client.chat(model="codellama", messages=[
             {"role": "user", "content": message}
@@ -17,9 +19,9 @@ def query_ai(message: str, files: dict[str, str] | None = None) -> dict[str, str
             "model": "codellama"
         })
 
-        return {"_": result}
+        results["no_file"] = result
+        return results
 
-    results = {}
     file_num = 1
     total = len(files)
 

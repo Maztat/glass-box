@@ -14,7 +14,7 @@ def prompt() -> None:
     print(sys_msg_gen)
     results = query_ai(message)
     print("\nAI Response:")
-    print(results)
+    print(f"\n{results["no_file"]}\n")
 
 def prompt_with_file() -> None:
     message = get_user_message()
@@ -41,7 +41,8 @@ def prompt_with_file() -> None:
     print(sys_msg_gen)
     results = query_ai(message, file)
     print("\nAI Response:")
-    print(results)
+    for path in results:
+        print(f"\n{path}\n{results[path]}\n")
 
 def prompt_with_files() -> None:
     message = get_user_message()
@@ -79,7 +80,7 @@ def prompt_with_all_files() -> None:
     if not files:
         print("\nNo files found in config.")
         return
-    
+
     message = get_user_message()
     if not message:
         return
